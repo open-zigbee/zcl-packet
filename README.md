@@ -5,7 +5,7 @@ zigbee-bridge-packet
 
 [![NPM](https://nodei.co/npm/zigbee-bridge-packet.png?downloads=true)](https://nodei.co/npm/zigbee-bridge-packet/)  
 
-[![Travis branch](https://img.shields.io/travis/open-zigbee/zigbee-bridge-packet/master.svg?maxAge=2592000)](https://travis-ci.org/open-zigbee/zigbee-bridge-packet)
+[![Travis branch](https://api.travis-ci.com/open-zigbee/zigbee-bridge-packet.svg?branch=master)](https://travis-ci.com/open-zigbee/zigbee-bridge-packet)
 [![npm](https://img.shields.io/npm/v/zigbee-bridge-packet.svg?maxAge=2592000)](https://www.npmjs.com/package/zigbee-bridge-packet)
 [![npm](https://img.shields.io/npm/l/zigbee-bridge-packet.svg?maxAge=2592000)](https://www.npmjs.com/package/zigbee-bridge-packet)
 
