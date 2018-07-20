@@ -1,40 +1,40 @@
-zcl-packet
+zigbee-bridge-packet
 ========================
 
-**zcl-packet** is a framer and parser for **Z**igBee **C**luster **L**ibrary (ZCL) **packet** on node.js.  
+**zigbee-bridge-packet** is a framer and parser for **Z**igBee **C**luster **L**ibrary (ZCL) **packet** on node.js.  
 
-[![NPM](https://nodei.co/npm/zcl-packet.png?downloads=true)](https://nodei.co/npm/zcl-packet/)  
+[![NPM](https://nodei.co/npm/zigbee-bridge-packet.png?downloads=true)](https://nodei.co/npm/zigbee-bridge-packet/)  
 
-[![Travis branch](https://img.shields.io/travis/zigbeer/zcl-packet/master.svg?maxAge=2592000)](https://travis-ci.org/zigbeer/zcl-packet)
-[![npm](https://img.shields.io/npm/v/zcl-packet.svg?maxAge=2592000)](https://www.npmjs.com/package/zcl-packet)
-[![npm](https://img.shields.io/npm/l/zcl-packet.svg?maxAge=2592000)](https://www.npmjs.com/package/zcl-packet)
+[![Travis branch](https://img.shields.io/travis/open-zigbee/zigbee-bridge-packet/master.svg?maxAge=2592000)](https://travis-ci.org/open-zigbee/zigbee-bridge-packet)
+[![npm](https://img.shields.io/npm/v/zigbee-bridge-packet.svg?maxAge=2592000)](https://www.npmjs.com/package/zigbee-bridge-packet)
+[![npm](https://img.shields.io/npm/l/zigbee-bridge-packet.svg?maxAge=2592000)](https://www.npmjs.com/package/zigbee-bridge-packet)
 
 <br />
 
 ## Documentation  
 
-Please visit the [Wiki](https://github.com/zigbeer/zcl-packet/wiki).
+Please visit the [Wiki](https://github.com/open-zigbee/zigbee-bridge-packet/wiki).
 
 <br />
 
 ## Overview  
 
-The **zcl-packet** is the packet builder and parser for ZigBee application layer ZCL commands and responses defined by [_ZigBee Cluster Library Specification_](http://www.zigbee.org/download/standards-zigbee-cluster-library/).  
+The **zigbee-bridge-packet** is the packet builder and parser for ZigBee application layer ZCL commands and responses defined by [_ZigBee Cluster Library Specification_](http://www.zigbee.org/download/standards-zigbee-cluster-library/).  
 
 <br />
 
 ## Installation  
 
-> $ npm install zcl-packet --save
+> $ npm install zigbee-bridge-packet --save
 
 <br />
 
 ## Usage  
 
-See [Usage](https://github.com/zigbeer/zcl-packet/wiki#Usage) on the Wiki for details.  
+See [Usage](https://github.com/open-zigbee/zigbee-bridge-packet/wiki#Usage) on the Wiki for details.  
 
 <br />
 
 ## License  
 
-Licensed under [MIT](https://github.com/zigbeer/zcl-packet/blob/master/LICENSE).  
+Licensed under [MIT](https://github.com/open-zigbee/zigbee-bridge-packet/blob/master/LICENSE).  

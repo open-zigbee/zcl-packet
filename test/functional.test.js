@@ -1,7 +1,7 @@
 var expect = require('chai').expect,
     Chance = require('chance'),
     chance = new Chance(),
-    zclId = require('zcl-id');
+    zclId = require('zigbee-bridge-definitions');
 
 var zclmeta = require('../lib/zclmeta'),
     FuncClass = require('../lib/functional');
@@ -138,7 +138,7 @@ function randomArg(type) {
                 testBuf[k] = chance.integer({min: 0, max: 255});
             }
             return testBuf;
-        case 'zonebuffer': 
+        case 'zonebuffer':
             testArr = [];
             for (k = 0; k < 20; k += 2) {
                 testArr[k] = chance.integer({min: 0, max: 255});

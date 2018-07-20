@@ -1,5 +1,5 @@
 var expect = require('chai').expect,
-    zclId = require('zcl-id'),
+    zclId = require('zigbee-bridge-definitions'),
     _ = require('busyman');
 
 var zclmeta = require('../lib/zclmeta'),
