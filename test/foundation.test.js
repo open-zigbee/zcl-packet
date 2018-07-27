@@ -1,6 +1,5 @@
 const expect = require('chai').expect;
 const zclId = require('zigbee-bridge-definitions');
-const _ = require('busyman');
 
 const FoundClass = require('../lib/foundation');
 
@@ -103,12 +102,38 @@ describe('Foundation Cmd framer and parser Check', function() {
         it(cmd + ' frame() and parse() check', function() {
             let cmdPayload = new FoundClass(cmd);
 
-
             let zBuf = cmdPayload.frame(valObj[cmd]);
 
             cmdPayload.parse(zBuf, function(err, result) {
-                expect(_.isEqual(result, valObj[cmd])).to.be.true;
+                expect(result).to.deep.equal(valObj[cmd]);
             });
+        });
+    });
+});
+
+describe('Binary attributes parsing', () => {
+    it('should parse ascii encoded not null-terminated charStr(datatype 66)', (done) => {
+        const binary = Buffer.from([
+            '0121950b0328200421a84305217b0',
+            '0062400000000000a210000641001',
+        ].join(''), 'hex');
+
+        const frame = Buffer.from([
+            '0500420673656e736f72e803421d',
+            binary.toString('hex'),
+        ].join(''), 'hex');
+
+        const parser = new FoundClass(10);
+
+        parser.parse(frame, (err, result) => {
+            result[1].attrData = Buffer.from(result[1].attrData, 'ascii');
+
+            expect(result).to.deep.equal([
+                {attrId: 5, dataType: 66, attrData: 'sensor'},
+                {attrId: 1000, dataType: 66, attrData: binary},
+            ]);
+
+            done();
         });
     });
 });
