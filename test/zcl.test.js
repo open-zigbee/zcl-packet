@@ -145,7 +145,7 @@ describe('Module Methods Check', function() {
                 seqNum: 0,
                 cmdId: 'writeUndiv',
                 payload: [
-                    {attrId: 0x1234, dataType: 0x41, attrData: 'hello'},
+                    {attrId: 0x1234, dataType: 0x41, attrData: Buffer.from('hello')},
                     {attrId: 0xabcd, dataType: 0x24, attrData: [100, 2406]},
                     {attrId: 0x1234, dataType: 0x08, attrData: 60},
                 ],

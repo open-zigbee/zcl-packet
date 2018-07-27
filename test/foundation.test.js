@@ -1,6 +1,5 @@
 const expect = require('chai').expect;
 const zclId = require('zigbee-bridge-definitions');
-const _ = require('busyman');
 
 const FoundClass = require('../lib/foundation');
 
@@ -19,12 +18,12 @@ const valObj = {
         {attrId: 0x4444, status: 0, dataType: 0x27, attrData: '0x000205680001e240'},
     ],
     write: [
-        {attrId: 0x1234, dataType: 0x41, attrData: 'hello'},
+        {attrId: 0x1234, dataType: 0x41, attrData: Buffer.from('hello')},
         {attrId: 0xabcd, dataType: 0x24, attrData: [100, 2406]},
         {attrId: 0x1234, dataType: 0x08, attrData: 60},
     ],
     writeUndiv: [
-        {attrId: 0x1234, dataType: 0x41, attrData: 'hello'},
+        {attrId: 0x1234, dataType: 0x41, attrData: Buffer.from('hello')},
         {attrId: 0xabcd, dataType: 0x24, attrData: [100, 2406]},
         {attrId: 0x1234, dataType: 0x08, attrData: 60},
     ],
@@ -34,7 +33,7 @@ const valObj = {
         {status: 1, attrId: 0xcccc},
     ],
     writeNoRsp: [
-        {attrId: 0x1234, dataType: 0x41, attrData: 'hello'},
+        {attrId: 0x1234, dataType: 0x41, attrData: Buffer.from('hello')},
         {attrId: 0xabcd, dataType: 0x24, attrData: [100, 2406]},
         {attrId: 0x1234, dataType: 0x08, attrData: 60},
     ],
@@ -59,7 +58,7 @@ const valObj = {
         {status: 0, direction: 1, attrId: 0x0001, timeout: 999},
     ],
     report: [
-        {attrId: 0x9999, dataType: 0x41, attrData: 'imhedy'},
+        {attrId: 0x9999, dataType: 0x41, attrData: Buffer.from('imhedy')},
         {attrId: 0x8888, dataType: 0x21, attrData: 65530},
         {attrId: 0x7777, dataType: 0x20, attrData: 99},
     ],
@@ -107,8 +106,34 @@ describe('Foundation Cmd framer and parser Check', function() {
             let zBuf = cmdPayload.frame(valObj[cmd]);
 
             cmdPayload.parse(zBuf, function(err, result) {
-                expect(_.isEqual(result, valObj[cmd])).to.be.true;
+                expect(result).to.deep.equal(valObj[cmd]);
             });
+        });
+    });
+});
+
+describe('Buffer/String strPreLenUint8 check', () => {
+    let parser = new FoundClass(10);
+    const expected = Buffer.from('99994106696d68656479', 'hex');
+
+    it('should make frame with string value', () => {
+        const frame = parser.frame([{
+            attrId: 0x9999,
+            dataType: 0x41,
+            attrData: 'imhedy',
+        }]);
+
+        expect(frame).to.deep.equal(expected, 'hex');
+    });
+
+    it('should provide Buffer for attrData', (done) => {
+        parser.parse(expected, (err, result) => {
+            expect(result.length).to.equal(1);
+            expect(result[0].attrId).to.equal(0x9999);
+            expect(result[0].dataType).to.equal(0x41);
+            expect(result[0].attrData).to.deep.equal(Buffer.from('imhedy'));
+
+            done();
         });
     });
 });
