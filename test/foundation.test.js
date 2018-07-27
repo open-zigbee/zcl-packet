@@ -1,6 +1,5 @@
 const expect = require('chai').expect;
 const zclId = require('zigbee-bridge-definitions');
-const _ = require('busyman');
 
 const FoundClass = require('../lib/foundation');
 
@@ -109,6 +108,32 @@ describe('Foundation Cmd framer and parser Check', function() {
             cmdPayload.parse(zBuf, function(err, result) {
                 expect(result).to.deep.equal(valObj[cmd]);
             });
+        });
+    });
+});
+
+describe('Buffer/String strPreLenUint8 check', () => {
+    let parser = new FoundClass(10);
+    const expected = Buffer.from('99994106696d68656479', 'hex');
+
+    it('should make frame with string value', () => {
+        const frame = parser.frame([{
+            attrId: 0x9999,
+            dataType: 0x41,
+            attrData: 'imhedy',
+        }]);
+
+        expect(frame).to.deep.equal(expected, 'hex');
+    });
+
+    it('should provide Buffer for attrData', (done) => {
+        parser.parse(expected, (err, result) => {
+            expect(result.length).to.equal(1);
+            expect(result[0].attrId).to.equal(0x9999);
+            expect(result[0].dataType).to.equal(0x41);
+            expect(result[0].attrData).to.deep.equal(Buffer.from('imhedy'));
+
+            done();
         });
     });
 });
