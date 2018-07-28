@@ -86,28 +86,32 @@ describe('APIs Arguments Check for Throwing Error', function() {
     describe('#.parse', function() {
         const zclBuf = new Buffer([0x11, 0x00, 0x02]);
 
+        const rethrow = (err) => {
+            if (err) throw err;
+        };
+
         it('should be a function', function() {
             expect(zcl.parse).to.be.a('function');
         });
 
         it('should throw TypeError if input zclBuf is not a buffer', function() {
-            expect(() => zcl.parse(undefined, 0, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(null, 0, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(NaN, 0, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse([], 0, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(true, 0, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(new Date(), 0, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(function() {}, 0, function() {})).to.throw(TypeError);
+            expect(() => zcl.parse(undefined, 0, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(null, 0, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(NaN, 0, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse([], 0, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(true, 0, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(new Date(), 0, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(function() {}, 0, rethrow)).to.throw(TypeError);
         });
 
         it('should throw TypeError if input clusterId is not a number and not a string', function() {
-            expect(() => zcl.parse(zclBuf, undefined, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(zclBuf, null, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(zclBuf, NaN, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(zclBuf, [], function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(zclBuf, true, function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(zclBuf, new Date(), function() {})).to.throw(TypeError);
-            expect(() => zcl.parse(zclBuf, function() {}, function() {})).to.throw(TypeError);
+            expect(() => zcl.parse(zclBuf, undefined, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(zclBuf, null, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(zclBuf, NaN, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(zclBuf, [], rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(zclBuf, true, rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(zclBuf, new Date(), rethrow)).to.throw(TypeError);
+            expect(() => zcl.parse(zclBuf, function() {}, rethrow)).to.throw(TypeError);
 
             expect(() => zcl.parse(zclBuf, 'genOnOff', function() {})).not.to.throw(TypeError);
             expect(() => zcl.parse(zclBuf, 6, function() {})).not.to.throw(TypeError);
