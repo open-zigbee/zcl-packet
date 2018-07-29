@@ -1,6 +1,6 @@
 {
     "name": "zigbee-bridge-packet",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "license": "MIT",
     "description": "zigbee-bridge-packet is a framer and parser for ZigBee Cluster Library (ZCL) packet on node.js.",
 
