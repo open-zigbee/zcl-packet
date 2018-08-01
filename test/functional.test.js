@@ -86,6 +86,7 @@ function randomArg(type) {
     let testBuf;
     let testArr;
     let k;
+    let stringLen;
 
     switch (type) {
         case 'uint8':
@@ -105,7 +106,7 @@ function randomArg(type) {
         case 'longaddr':
             return '0x00124b00019c2ee9';
         case 'stringPreLen':
-            const stringLen = chance.integer({min: 0, max: 255});
+            stringLen = chance.integer({min: 0, max: 255});
             return chance.string({length: stringLen});
         case 'preLenUint8':
         case 'preLenUint16':
